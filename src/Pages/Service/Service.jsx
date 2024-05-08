@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
 import ServiceCrad from "./ServiceCrad";
+import useServices from "../../Hooks/useServices";
 
 const Service = () => {
-  const [services, setService] = useState([]);
+  // const [services, setService] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/service")
-      .then((res) => res.json())
-      .then((data) => setService(data));
-  });
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/service")
+  //     .then((res) => res.json())
+  //     .then((data) => setService(data));
+  // });
+
+  const services = useServices();
+
   return (
     <div className=" my-10">
       <div className="mx-auto text-center w-3/5 space-y-5">

@@ -3,25 +3,32 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import BookingsRow from "./BookingsRow";
 import banner from "../../assets/images/checkout/checkout.png";
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Bookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
-  const url = `http://localhost:3000/bookings?email=${user?.email}`;
+  // const url = `http://localhost:3000/bookings?email=${user?.email}`;
+  const url = `/bookings?email=${user?.email}`;
 
   useEffect(() => {
-    axios
-      .get(url, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        setBookings(res.data);
-      });
+    // axios
+    //   .get(url, {
+    //     withCredentials: true,
+    //   })
+    //   .then((res) => {
+    //     setBookings(res.data);
+    //   });
     // fetch(url)
     //   .then((res) => res.json())
     //   .then((data) => setBookings(data));
-  }, []);
+
+    axiosSecure
+      .get(url, { withCredentials: true })
+      .then((res) => setBookings(res.data));
+  }, [url, axiosSecure]);
 
   const handleDelete = (id) => {
     const proceed = confirm("Are you sure?");

@@ -8,9 +8,11 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { IoIosEyeOff, IoMdEye } from "react-icons/io";
 import axios from "axios";
+import useAuth from "../../Hooks/useAuth";
 
 const SignIn = () => {
-  const { signIn } = useContext(AuthContext);
+  // const { signIn } = useContext(AuthContext);
+  const { signIn } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   console.log(location);
